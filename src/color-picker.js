@@ -1,3 +1,5 @@
+import COLORS from '../assets/colors'
+
 class ColorPicker extends HTMLElement {
     constructor() {
         super()
@@ -6,7 +8,14 @@ class ColorPicker extends HTMLElement {
         wrapper.setAttribute('class', 'wrapper')
         this.context = document.createElement('span')
         this.context.setAttribute('class', 'context-span')
+        this._colors = document.createElement('div')
+        this._colors.setAttribute('class','colors-wrapper')
+        const colorList = document.createElement('ul')
+        colorList.setAttribute('class','color-list')
+        this.colors(COLORS)
+        this._colors.appendChild(colorList)
         wrapper.appendChild(this.context)
+        wrapper.appendChild(this._colors)
         this.shadow.appendChild(wrapper)
         this.input = ''
     }
@@ -19,6 +28,12 @@ class ColorPicker extends HTMLElement {
 
     get input() {
         this._input
+    }
+    set colors(colorList){
+        console.log(colorList)
+    }
+    get colors(){
+        return this._colors
     }
 }
 
