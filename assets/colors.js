@@ -1,5 +1,4 @@
-export default const COLORS =
-
+const COLORS =
 {
   "aliceblue": "#f0f8ff",
   "antiquewhite": "#faebd7",
@@ -150,3 +149,5 @@ export default const COLORS =
   "yellow": "#ffff00",
   "yellowgreen": "#9acd32"
 }
+
+export default COLORS
