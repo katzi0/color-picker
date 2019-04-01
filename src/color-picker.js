@@ -18,6 +18,7 @@ const MAIN_COLORS_ENUM = {
 }
 
 
+
 class ColorPicker extends HTMLElement {
     set input(color) {
         this._input = color
@@ -52,7 +53,7 @@ class ColorPicker extends HTMLElement {
         // $colorsWrapper.appendChild(this.$colorList)
         // $wrapper.appendChild($context)
         // $wrapper.appendChild($colorsWrapper)
-
+        this.mainColorClickHandler = this.mainColorClickHandler.bind(this)
         this._shadow.appendChild(template.content.cloneNode(true))
         this.$mainColorList = this._shadow.querySelector('.main-color-list')
         this.$selectedColorPallete = this._shadow.querySelector('.selected-color-pallete')
@@ -75,18 +76,33 @@ class ColorPicker extends HTMLElement {
 
     renderColorPallete(colorName) {
         const filteredColorKeys = Object.keys(MATERIAL_COLORS).filter(color => color.includes(colorName))
-        console.log(filteredColorKeys)
+        this.$selectedColorPallete.innerHTML = ''
+        filteredColorKeys.forEach(colorName => {
+            const $colorListItem = document.createElement('li')
+            const $colorItem = document.createElement('span')
+            $colorItem.setAttribute('class','color-field')
+            $colorListItem.appendChild($colorItem)
+            $colorItem.innerHTML = colorName
+            $colorItem.style.background = MATERIAL_COLORS[colorName]
+            this.$selectedColorPallete.appendChild($colorListItem)
+        })
     }
 
     connectedCallback(){
         const colorFields = this._shadow.querySelectorAll('span')
         colorFields.forEach(colorElm =>
-            colorElm.addEventListener('click', () => {
-                this.renderColorPallete(colorElm.innerHTML)
-            })
-        )
+            colorElm.addEventListener('click', this.mainColorClickHandler))
     }
 
+    disconnectedCallback(){
+        const mainColorsFields = this._shadow.querySelectorAll('span')
+        mainColorsFields.forEach(colorElm =>
+            colorElm.removeEventListener('click',this.mainColorClickHandler)
+        )
+    }
+    mainColorClickHandler(event) {
+        this.renderColorPallete(event.target.innerHTML)
+    }
 
 }
 
