@@ -1,14 +1,6 @@
 import COLORS from '../assets/colors'
 import MATERIAL_COLORS from '../assets/material-colors'
-
-const template = document.createElement('template')
-template.innerHTML = `
-    <div class="wrapper">
-        <ul class="main-color-list"></ul>
-        <ul class="selected-color-pallete"></ul>   
-    </div>
-`
-
+import template from './template'
 const MAIN_COLORS_ENUM = {
     RED: 'red',
     YELLOW: 'yellow',
@@ -16,7 +8,6 @@ const MAIN_COLORS_ENUM = {
     PINK: 'pink',
     WHITE: 'white',
 }
-
 
 
 class ColorPicker extends HTMLElement {
@@ -65,11 +56,11 @@ class ColorPicker extends HTMLElement {
         const mainColors = Object.values(MAIN_COLORS_ENUM)
         mainColors.forEach(colorName => {
             const $colorListItem = document.createElement('li')
-            const $colorItem = document.createElement('span')
-            $colorItem.setAttribute('class','color-field')
-            $colorListItem.appendChild($colorItem)
-            $colorItem.innerHTML = colorName
-            $colorItem.style.background = COLORS[colorName]
+            const $colorName = document.createElement('span')
+            $colorName.setAttribute('class', 'color-field')
+            $colorListItem.appendChild($colorName)
+            $colorName.innerHTML = colorName
+            $colorListItem.style.background = COLORS[colorName]
             this.$mainColorList.appendChild($colorListItem)
         })
     }
@@ -80,7 +71,7 @@ class ColorPicker extends HTMLElement {
         filteredColorKeys.forEach(colorName => {
             const $colorListItem = document.createElement('li')
             const $colorItem = document.createElement('span')
-            $colorItem.setAttribute('class','color-field')
+            $colorItem.setAttribute('class', 'color-field')
             $colorListItem.appendChild($colorItem)
             $colorItem.innerHTML = colorName
             $colorItem.style.background = MATERIAL_COLORS[colorName]
@@ -88,18 +79,19 @@ class ColorPicker extends HTMLElement {
         })
     }
 
-    connectedCallback(){
-        const colorFields = this._shadow.querySelectorAll('span')
+    connectedCallback() {
+        const colorFields = this._shadow.querySelectorAll('.main-color-list li span')
         colorFields.forEach(colorElm =>
             colorElm.addEventListener('click', this.mainColorClickHandler))
     }
 
-    disconnectedCallback(){
+    disconnectedCallback() {
         const mainColorsFields = this._shadow.querySelectorAll('span')
         mainColorsFields.forEach(colorElm =>
-            colorElm.removeEventListener('click',this.mainColorClickHandler)
+            colorElm.removeEventListener('click', this.mainColorClickHandler)
         )
     }
+
     mainColorClickHandler(event) {
         this.renderColorPallete(event.target.innerHTML)
     }
