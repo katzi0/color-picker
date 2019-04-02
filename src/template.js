@@ -1,8 +1,7 @@
-
 const template = document.createElement('template')
 template.innerHTML = `
 <style>
-.main-color-list {
+    .main-color-list {
 display: flex;
 }
     .main-color-list li{
@@ -12,17 +11,74 @@ display: flex;
     border: 1px solid gray;
     border-radius: 28px;
     width: 60px;
-}
+    
     }
     .main-color-list li span {
         flex:1;
     }
-     .selected-color-pallete li {
-             margin-top: 120px;
-            display: flex;
+    .selected-color-pallete li {
+            position: absolute;
+            list-style: none;
              height: 30px;
+             transition: transform 1s ease-in-out;
+             transition-delay: 10s;
+                       transform-origin: top right;
+
     }
-    
+    .selected-color-pallete li:nth-child(2){
+        transform: rotate(10deg);
+    }
+    .selected-color-pallete li:nth-child(3){
+        transform: rotate(20deg);
+    }
+    .selected-color-pallete li:nth-child(4){
+        transform: rotate(30deg);
+    }
+    .selected-color-pallete li:nth-child(5){
+        transform: rotate(40deg);
+    }
+    .selected-color-pallete li:nth-child(6){
+        transform: rotate(50deg);
+    }
+    .selected-color-pallete li:nth-child(7){
+        transform: rotate(60deg);
+    }
+    .selected-color-pallete li:nth-child(8){
+        transform: rotate(70deg);
+    }
+    .selected-color-pallete li:nth-child(9){
+        transform: rotate(80deg);
+    }
+    .selected-color-pallete li:nth-child(10){
+        transform: rotate(90deg);
+    }
+    .selected-color-pallete li:nth-child(11){
+        transform: rotate(100deg);
+    }
+    .selected-color-pallete li:nth-child(12){
+        transform: rotate(110deg);
+    }
+    .selected-color-pallete li:nth-child(13){
+        transform: rotate(120deg);
+    }
+    .selected-color-pallete li:nth-child(14){
+        transform: rotate(130deg);
+    }
+    .selected-color-pallete li:nth-child(15){
+        transform: rotate(140deg);
+    }
+    .selected-color-pallete li:nth-child(16){
+        transform: rotate(150deg);
+    }
+    .selected-color-pallete li:nth-child(17){
+    transform: rotate(160deg);
+}
+    .selected-color-pallete li:nth-child(18){
+    transform: rotate(170deg);
+}
+    .selected-color-pallete li:nth-child(19){
+        transform: rotate(180deg);
+    }
 </style>
     <div class="wrapper">
         <ul class="main-color-list"></ul>
