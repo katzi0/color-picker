@@ -68,7 +68,7 @@ class ColorPicker extends HTMLElement {
         const $colorFanItems = this._shadow.querySelectorAll('.color-field')
         setTimeout(()=>{
             $colorFanItems.forEach(item => {
-                item.style.width = '300px'
+                item.style.width = '200px'
                 item.style.height = '100px'
             })
         },0)
