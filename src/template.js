@@ -1,30 +1,42 @@
 const template = document.createElement('template')
 template.innerHTML = `
-<style>
+    <style>
+    .wrapper {
+        display:flex;
+        flex-direction: column;
+    }
+    
     .main-color-list {
 display: flex;
 }
     .main-color-list li{
-          margin-top: 20px;
-    height: 60px;
-    display: flex;
-    border: 1px solid gray;
-    border-radius: 28px;
-    width: 60px;
-    
+        margin-top: 20px;
+        height: 60px;
+        display: flex;
+        border: 1px solid gray;
+        border-radius: 28px;
+        width: 60px;
     }
     .main-color-list li span {
         flex:1;
     }
+    .pallate-wrapper{
+        display: flex;
+        justify-content: space-around;
+     }
+    .selected-color-pallete {
+        margin-top:100px;
+        position: relative;
+        width:200px;
+        height:200px;
+    }
     .selected-color-pallete li {
             position: absolute;
             list-style: none;
-             height: 30px;
-             transition: transform 1s ease-in-out;
-             transition-delay: 10s;
-                       transform-origin: top right;
-
-    }
+            height: 30px;
+            transform-origin: top left;
+            border:1px solid darkgray;         
+    }   
     .selected-color-pallete li:nth-child(2){
         transform: rotate(10deg);
     }
@@ -71,19 +83,23 @@ display: flex;
         transform: rotate(150deg);
     }
     .selected-color-pallete li:nth-child(17){
-    transform: rotate(160deg);
-}
+        transform: rotate(160deg);
+    }
     .selected-color-pallete li:nth-child(18){
-    transform: rotate(170deg);
-}
+        transform: rotate(170deg);
+    }
     .selected-color-pallete li:nth-child(19){
         transform: rotate(180deg);
     }
 </style>
-    <div class="wrapper">
+<div class="wrapper">
+    <div>
         <ul class="main-color-list"></ul>
+    </div>
+    <div class="pallate-wrapper">
         <ul class="selected-color-pallete"></ul>   
     </div>
+</div>
 `
 
 export default template

@@ -20,7 +20,6 @@ const MAIN_COLORS_ENUM = {
     grey: 'grey',
 }
 
-
 class ColorPicker extends HTMLElement {
     constructor() {
         super()
@@ -30,25 +29,6 @@ class ColorPicker extends HTMLElement {
         this.$mainColorList = this._shadow.querySelector('.main-color-list')
         this.$selectedColorPallete = this._shadow.querySelector('.selected-color-pallete')
         this.renderMainColorList()
-    }
-
-    get input() {
-        this._input
-    }
-
-    set input(color) {
-        this._input = color
-        let elem = this.shadow.querySelector('.context-span')
-        elem.innerHTML = color
-    }
-
-    get colors() {
-        return this._colors
-    }
-
-    set colors(colorList) {
-        this._colors = colorList
-        // this.renderColorList(this._colors)
     }
 
     renderMainColorList() {
@@ -69,20 +49,29 @@ class ColorPicker extends HTMLElement {
         this.$selectedColorPallete.innerHTML = ''
         filteredColorKeys.forEach(colorName => {
             const $colorListItem = document.createElement('li')
-            // $colorListItem.setAttribute('class','pallete-animation')
             const $colorItem = document.createElement('span')
             $colorItem.setAttribute('class', 'color-field')
             $colorListItem.appendChild($colorItem)
-            $colorItem.innerHTML = `<style>
-            .color-field {
-            display: inline-block;
-                height:100px;
-                width:30px;
-                        }
-                                    </style>${colorName}`
+            $colorItem.innerHTML =
+                `<style>
+                    .color-field {
+                        display: inline-block;
+                        height: 0px;
+                        width: 0px;
+                        transition: width 0.5s, height 0.1s;
+                        border: 1px solid darkgray;
+                    }
+                </style>${colorName}`
             $colorItem.style.background = MATERIAL_COLORS[colorName]
             this.$selectedColorPallete.appendChild($colorListItem)
         })
+        const $colorFanItems = this._shadow.querySelectorAll('.color-field')
+        setTimeout(()=>{
+            $colorFanItems.forEach(item => {
+                item.style.width = '300px'
+                item.style.height = '100px'
+            })
+        },0)
     }
 
     connectedCallback() {
@@ -101,9 +90,42 @@ class ColorPicker extends HTMLElement {
     mainColorClickHandler(event) {
         this.renderColorPallete(event.target.innerHTML)
     }
+    //
+    // get input() {
+    //     this._input
+    // }
+    //
+    // set input(color) {
+    //     this._input = color
+    //     let elem = this.shadow.querySelector('.context-span')
+    //     elem.innerHTML = color
+    // }
+    //
+    // get colors() {
+    //     return this._colors
+    // }
+    //
+    // set colors(colorList) {
+    //     this._colors = colorList
+    //     // this.renderColorList(this._colors)
+    // }
 
 }
 
 customElements.define('color-picker', ColorPicker)
 
 
+const btnElm = document.createElement('button')
+btnElm.setAttribute('class', 'testButton')
+const $colorPicker = document.createElement('color-picker')
+$colorPicker.setAttribute('id', 'testColorPicker')
+document.body.appendChild(btnElm)
+document.body.appendChild($colorPicker)
+const btnShai = document.querySelector('.testButton')
+const result = document.createElement('div')
+result.setAttribute('class', 'result')
+document.body.appendChild(result)
+const colorPicker = document.getElementById('testColorPicker')
+btnShai.addEventListener('click', () => {
+    colorPicker.remove()
+})

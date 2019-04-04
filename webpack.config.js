@@ -4,11 +4,11 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
     entry: {
-        index: './src/index.js',
+        // index: './src/index.js',
         colorPicker: './src/color-picker.js'
     },
     output: {
-        filename: '[name].bundle.js',
+        filename: 'main.js',
         path: path.resolve(__dirname, 'dist')
     },
     devtool: 'inline-source-map',
