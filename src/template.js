@@ -25,13 +25,14 @@ display: flex;
         justify-content: space-around;
      }
     .selected-color-pallete {
-        margin-top:400px;
         position: relative;
-        width:200px;
-        height:100px;
+        width: 200px;
+        height: 300px;
+        top: 0px;
     }
     .selected-color-pallete li {
             position: absolute;
+            top:200px;
             list-style: none;
             height: 30px;
             transform-origin: top right;
