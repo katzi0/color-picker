@@ -63,15 +63,16 @@ class ColorPicker extends HTMLElement {
                     }
                 </style>${colorName}`
             $colorItem.style.background = MATERIAL_COLORS[colorName]
+            $colorItem.onclick = () => this.input = MATERIAL_COLORS[colorName]
             this.$selectedColorPallete.appendChild($colorListItem)
         })
         const $colorFanItems = this._shadow.querySelectorAll('.color-field')
-        setTimeout(()=>{
+        setTimeout(() => {
             $colorFanItems.forEach(item => {
                 item.style.width = '200px'
                 item.style.height = '100px'
             })
-        },0)
+        }, 0)
     }
 
     connectedCallback() {
@@ -90,16 +91,17 @@ class ColorPicker extends HTMLElement {
     mainColorClickHandler(event) {
         this.renderColorPallete(event.target.innerHTML)
     }
+
     //
-    // get input() {
-    //     this._input
-    // }
+    get input() {
+        return this._input
+    }
     //
-    // set input(color) {
-    //     this._input = color
-    //     let elem = this.shadow.querySelector('.context-span')
-    //     elem.innerHTML = color
-    // }
+    set input(color) {
+        this._input = color
+        let elem = this._shadow.querySelector('.context-span')
+        elem.innerHTML = color
+    }
     //
     // get colors() {
     //     return this._colors
@@ -114,7 +116,7 @@ class ColorPicker extends HTMLElement {
 
 customElements.define('color-picker', ColorPicker)
 
-
+//move later to sample page
 const btnElm = document.createElement('button')
 btnElm.setAttribute('class', 'testButton')
 const $colorPicker = document.createElement('color-picker')

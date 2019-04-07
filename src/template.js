@@ -5,7 +5,6 @@ template.innerHTML = `
         display:flex;
         flex-direction: column;
     }
-    
     .main-color-list {
 display: flex;
 }
@@ -99,6 +98,9 @@ display: flex;
     </div>
      <div>
         <ul class="main-color-list"></ul>
+    </div>
+    <div class="selected-color">
+        <span class="context-span"></span>
     </div>
 </div>
 `
