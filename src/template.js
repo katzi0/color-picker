@@ -1,6 +1,8 @@
-const template = document.createElement('template')
-template.innerHTML = `
+const templateStr = `
     <style>
+    .hidden{
+        display: none;
+    }
     .wrapper {
         display:flex;
         flex-direction: column;
@@ -92,7 +94,7 @@ display: flex;
         transform: rotate(180deg);
     }
 </style>
-<div class="wrapper">
+<div class="wrapper hidden">
     <div class="pallate-wrapper">
         <ul class="selected-color-pallete"></ul>   
     </div>
@@ -105,4 +107,4 @@ display: flex;
 </div>
 `
 
-export default template
+export default templateStr
