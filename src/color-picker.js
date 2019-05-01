@@ -11,8 +11,15 @@ class ColorPicker extends HTMLElement {
     constructor() {
         super()
         this._shadow = this.attachShadow({ mode: 'open' })
-        this.mainColorClickHandler = this.mainColorClickHandler.bind(this)
+        // this.mainColorClickHandler = this.mainColorClickHandler.bind(this)
         this._shadow.appendChild(template.content.cloneNode(true))
+    }
+    connectedCallback() {
+        this.renderMainColorList()
+        this.$selectedColorPallete = this._shadow.querySelector('.selected-color-pallete')
+        const colorFields = this._shadow.querySelectorAll('.main-color-list li span')
+        colorFields.forEach(colorElm =>
+            colorElm.addEventListener('click', this.mainColorClickHandler))
     }
 
     renderMainColorList() {
@@ -22,6 +29,7 @@ class ColorPicker extends HTMLElement {
             const $colorListItem = document.createElement('li')
             const $colorName = document.createElement('span')
             $colorName.setAttribute('class', 'color-field')
+            $colorName.setAttribute('class', colorName)
             $colorListItem.appendChild($colorName)
             $colorName.innerHTML = colorName
             $colorListItem.style.background = COLORS[colorName]
@@ -60,13 +68,6 @@ class ColorPicker extends HTMLElement {
         }, 0)
     }
 
-    connectedCallback() {
-        this.renderMainColorList()
-        this.$selectedColorPallete = this._shadow.querySelector('.selected-color-pallete')
-        const colorFields = this._shadow.querySelectorAll('.main-color-list li span')
-        colorFields.forEach(colorElm =>
-            colorElm.addEventListener('click', this.mainColorClickHandler))
-    }
 
     disconnectedCallback() {
         const mainColorsFields = this._shadow.querySelectorAll('span')
@@ -75,29 +76,19 @@ class ColorPicker extends HTMLElement {
         )
     }
 
-    mainColorClickHandler(event) {
+    mainColorClickHandler = (event) => {
         this.renderColorPallete(event.target.innerHTML)
     }
 
-    //
     get input() {
         return this._input
     }
-    //
+
     set input(color) {
         this._input = color
         let elem = this._shadow.querySelector('.context-span')
         elem.innerHTML = color
     }
-    //
-    // get colors() {
-    //     return this._colors
-    // }
-    //
-    // set colors(colorList) {
-    //     this._colors = colorList
-    //     // this.renderColorList(this._colors)
-    // }
 
     open(){
         const content =  this.querySelector('.wrapper')
@@ -124,3 +115,5 @@ btnShai.addEventListener('click', () => {
     ColorPicker.open()
     // colorPicker.remove()
 })
+
+export default ColorPicker

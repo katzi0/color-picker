@@ -4,7 +4,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
     entry: {
-        // index: './src/index.js',
         colorPicker: './src/color-picker.js'
     },
     output: {
@@ -30,6 +29,11 @@ module.exports = {
                     'css-loader'
                 ]
             },
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+            }
         ]
     }
 }
