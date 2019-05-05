@@ -1,15 +1,38 @@
 const templateStr = `
     <style>
+            .overlay {
+            opacity: 1;
+            visibility: visible;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.42);
+            -webkit-transition: opacity 0.5s;
+            transition: opacity 0.5s;
+            display: flex;
+            align-items: center; 
+            justify-content: center;
+        }
+    
+        .overlay-hidden {
+            opacity: 0;
+            visibility: hidden;
+            -webkit-transition: opacity 0.5s, visibility 0s 0.5s;
+            transition: opacity 0.5s, visibility 0s 0.5s;
+        }
     .hidden{
         display: none;
     }
     .wrapper {
         display:flex;
         flex-direction: column;
+        border:1px solid ghostwhite;
     }
     .main-color-list {
-display: flex;
-}
+        display: flex;
+    }
     .main-color-list li{
         margin-top: 20px;
         height: 60px;
@@ -93,16 +116,20 @@ display: flex;
     .selected-color-pallete li:nth-child(1){
         transform: rotate(180deg);
     }
+    
 </style>
-<div class="wrapper hidden">
-    <div class="pallate-wrapper">
-        <ul class="selected-color-pallete"></ul>   
-    </div>
-     <div>
-        <ul class="main-color-list"></ul>
-    </div>
-    <div class="selected-color">
-        <span class="context-span"></span>
+<div class="overlay overlay-hidden">
+    <div class="wrapper hidden">
+        <div class="pallate-wrapper">
+            <ul class="selected-color-pallete"></ul>   
+        </div>
+         <div>
+            <ul class="main-color-list"></ul>
+        </div>
+        <div class="selected-color">
+            <span class="context-span"></span>
+        </div>
+        <input type="color" />
     </div>
 </div>
 `

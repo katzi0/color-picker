@@ -3,23 +3,38 @@ import MATERIAL_COLORS from '../assets/material-colors'
 import templateStr from './template'
 import MAIN_COLORS_ENUM from './colorEnum'
 
-
 const template = document.createElement('template')
-template.innerHTML =  templateStr
+template.innerHTML = templateStr
 
 class ColorPicker extends HTMLElement {
+    mainColorClickHandler = (event) => {
+        this.renderColorPallete(event.target.innerHTML)
+    }
+
     constructor() {
         super()
         this._shadow = this.attachShadow({ mode: 'open' })
-        // this.mainColorClickHandler = this.mainColorClickHandler.bind(this)
         this._shadow.appendChild(template.content.cloneNode(true))
     }
+
+    get input() {
+        return this._input
+    }
+
+    set input(color) {
+        this._input = color
+        let elem = this._shadow.querySelector('.context-span')
+        elem.innerHTML = color
+    }
+
     connectedCallback() {
         this.renderMainColorList()
         this.$selectedColorPallete = this._shadow.querySelector('.selected-color-pallete')
         const colorFields = this._shadow.querySelectorAll('.main-color-list li span')
         colorFields.forEach(colorElm =>
-            colorElm.addEventListener('click', this.mainColorClickHandler))
+            colorElm.addEventListener('click', this.mainColorClickHandler)
+        )
+        this._shadow.querySelector('.wrapper.hidden').addEventListener('click',(event)=> event.stopPropagation())
     }
 
     renderMainColorList() {
@@ -68,7 +83,6 @@ class ColorPicker extends HTMLElement {
         }, 0)
     }
 
-
     disconnectedCallback() {
         const mainColorsFields = this._shadow.querySelectorAll('span')
         mainColorsFields.forEach(colorElm =>
@@ -76,44 +90,23 @@ class ColorPicker extends HTMLElement {
         )
     }
 
-    mainColorClickHandler = (event) => {
-        this.renderColorPallete(event.target.innerHTML)
+    open() {
+        this._shadow.querySelector('.overlay').classList.remove('overlay-hidden')
     }
-
-    get input() {
-        return this._input
-    }
-
-    set input(color) {
-        this._input = color
-        let elem = this._shadow.querySelector('.context-span')
-        elem.innerHTML = color
-    }
-
-    open(){
-        const content =  this.querySelector('.wrapper')
-        content.classList.remove('hidden')
+    close(){
+        this._shadow.querySelector('.overlay').classList.add('overlay-hidden')
     }
 }
 
 customElements.define('color-picker', ColorPicker)
 
 //move later to sample page
-const btnElm = document.createElement('button')
-btnElm.setAttribute('class', 'testButton')
 const $colorPicker = document.createElement('color-picker')
 $colorPicker.setAttribute('id', 'testColorPicker')
-document.body.appendChild(btnElm)
 document.body.appendChild($colorPicker)
-const btnShai = document.querySelector('.testButton')
 const result = document.createElement('div')
 result.setAttribute('class', 'result')
 document.body.appendChild(result)
 const colorPicker = document.getElementById('testColorPicker')
-btnShai.innerHTML= 'click me'
-btnShai.addEventListener('click', () => {
-    ColorPicker.open()
-    // colorPicker.remove()
-})
 
 export default ColorPicker
