@@ -1,7 +1,18 @@
 module.exports = {
-    extends: ['prettier'],
-    plugins: ['prettier', 'babel'],
-    parser: 'babel-eslint',
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": "eslint:recommended",
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
     rules: {
         'prettier/prettier': [
             1,
@@ -11,5 +22,5 @@ module.exports = {
                 trailingComma: 'all',
             },
         ],
-    },
-}
+    }
+};

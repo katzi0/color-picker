@@ -1,1 +1,13 @@
 language: node_js
+script:
+- npm run lint
+- npm build
+- npm test
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: 1688f32f4402b245eca1b4b6ea8a4fb314d76dfd
+  keep_history: true
+  on:
+    branch: ci
