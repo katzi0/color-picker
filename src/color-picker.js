@@ -101,12 +101,12 @@ class ColorPicker extends HTMLElement {
 customElements.define('color-picker', ColorPicker)
 
 //move later to sample page
-const $colorPicker = document.createElement('color-picker')
-$colorPicker.setAttribute('id', 'testColorPicker')
-document.body.appendChild($colorPicker)
-const result = document.createElement('div')
-result.setAttribute('class', 'result')
-document.body.appendChild(result)
-const colorPicker = document.getElementById('testColorPicker')
+// const $colorPicker = document.createElement('color-picker')
+// $colorPicker.setAttribute('id', 'testColorPicker')
+// document.body.appendChild($colorPicker)
+// const result = document.createElement('div')
+// result.setAttribute('class', 'result')
+// document.body.appendChild(result)
+// const colorPicker = document.getElementById('testColorPicker')
 
 export default ColorPicker

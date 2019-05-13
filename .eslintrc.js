@@ -2,7 +2,8 @@ module.exports = {
     "env": {
         "browser": true,
         "es6": true,
-        "node": true
+        "node": true,
+        "jasmine":true
     },
     "extends": "eslint:recommended",
     "globals": {
@@ -13,14 +14,5 @@ module.exports = {
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
-    rules: {
-        'prettier/prettier': [
-            1,
-            {
-                semi: false,
-                singleQuote: true,
-                trailingComma: 'all',
-            },
-        ],
-    }
+    "parser": "babel-eslint"
 };
