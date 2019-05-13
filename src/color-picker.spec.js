@@ -20,16 +20,4 @@ describe('App tests', () => {
             expect($mainColorList.children.length).toEqual(numOfMainColors)
         })
     })
-//     describe('color list correct values', () => {
-//         it('each color in list should have same name class and background color', () => {
-//             const mainColorsNames = Object.values(MAIN_COLORS_ENUM)
-//             const $mainColorList = shadowRoot.querySelector('.main-color-list')
-//             Array.from($mainColorList.children).forEach(colorLi => {
-//                 console.log(shadowRoot.querySelector(`.main-color-list ${colorLi.innerHTML}`).innerHTML === colorLi.innerHTML)
-//                 const elm = colorLi.querySelector('span').innerText
-//                     console.log(elm)
-//                 // console.log(shadowRoot.querySelector(`.main-color-list . ${colorLi.innerHTML}`))
-//             })
-//         })
-//     })
 })

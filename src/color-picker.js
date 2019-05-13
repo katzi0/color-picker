@@ -7,14 +7,16 @@ const template = document.createElement('template')
 template.innerHTML = templateStr
 
 class ColorPicker extends HTMLElement {
-    mainColorClickHandler = (event) => {
-        this.renderColorPallete(event.target.innerHTML)
-    }
 
     constructor() {
         super()
         this._shadow = this.attachShadow({ mode: 'open' })
         this._shadow.appendChild(template.content.cloneNode(true))
+        this.mainColorClickHandler = this.mainColorClickHandler.bind(this)
+    }
+
+    mainColorClickHandler (event)  {
+        this.renderColorPallete(event.target.innerHTML)
     }
 
     get input() {
