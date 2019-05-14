@@ -36,13 +36,13 @@ cache:
     - "./node_modules"
 
 before_deploy:
-  - "npm run build"
+#  - "npm run build"
   - "cd ./dist/"
 
 deploy:
   - provider: script
     script:
-      - "cd ../ &&  npm run deploy:gh-pages"
+      - "cd ../ &&  npm run deploy"
     skip_cleanup: true
     on:
       branch: ci
