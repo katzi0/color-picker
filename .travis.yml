@@ -47,7 +47,8 @@ deploy:
     on:
       branch: ci
   - provider: npm
-#    email: $EMAIL_ADDRESS
+    email: "katzi0@gmail.com"
+#    //$EMAIL_ADDRESS
 #    api_key: $NPM_TOKEN
     skip_cleanup: true
     on:
