@@ -45,7 +45,7 @@ deploy:
       - "cd ../ &&  npm run deploy:gh-pages"
     skip_cleanup: true
     on:
-      branch: master
+      branch: ci
   - provider: npm
 #    email: $EMAIL_ADDRESS
 #    api_key: $NPM_TOKEN
