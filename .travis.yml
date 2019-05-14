@@ -28,8 +28,8 @@ before_script:
 
 script:
 - npm run lint
-- npm build
-- npm test
+- npm run build
+- npm run test
 
 deploy:
   provider: pages
