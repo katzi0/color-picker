@@ -31,11 +31,24 @@ script:
 - npm run build
 - npm run test
 
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  keep_history: true
-  on:
-    branch: ci
+cache:
+  directories:
+    - "./node_modules"
 
+before_deploy:
+  - "npm run build"
+  - "cd ./dist/"
+
+deploy:
+  - provider: script
+    script:
+      - "cd ../ &&  npm run deploy:gh-pages"
+    skip_cleanup: true
+    on:
+      branch: master
+  - provider: npm
+#    email: $EMAIL_ADDRESS
+#    api_key: $NPM_TOKEN
+    skip_cleanup: true
+    on:
+      tags: true
