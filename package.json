@@ -8,7 +8,8 @@
     "test": "karma start config/karma.conf.js --single-run",
     "build": "webpack",
     "start": "webpack-dev-server --open",
-    "lint": "eslint ./src --fix"
+    "lint": "eslint ./src --fix",
+    "deploy": "gh-pages -r https://$GITHUB_TOKEN@github.com/katzi0/color-picker.git -d dist"
   },
   "repository": {
     "type": "git",
