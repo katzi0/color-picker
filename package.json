@@ -5,7 +5,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "test": "karma start config/karma.conf.js --watch=false",
+    "test": "karma start config/karma.conf.js --no-auto-watch",
     "build": "webpack",
     "start": "webpack-dev-server --open",
     "lint": "eslint ./src --fix"
