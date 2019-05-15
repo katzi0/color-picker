@@ -46,7 +46,7 @@ deploy:
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
     on:
-      branch: ci
+      branch: master
 #  - provider: npm
     email: "katzi0@gmail.com"
 #    api_key: $NPM_TOKEN
