@@ -73,7 +73,11 @@ class ColorPicker extends HTMLElement {
                     }
                 </style>${colorName}`
             $colorItem.style.background = MATERIAL_COLORS[colorName]
-            $colorItem.onclick = () => this.input = MATERIAL_COLORS[colorName]
+            $colorItem.onclick = () => {
+                const wrapper = this._shadow.querySelector('.wrapper.hidden')
+                wrapper.style.background = MATERIAL_COLORS[colorName]
+                this.input = MATERIAL_COLORS[colorName]
+            }
             this.$selectedColorPallete.appendChild($colorListItem)
         })
         const $colorFanItems = this._shadow.querySelectorAll('.color-field')
