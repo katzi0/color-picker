@@ -40,16 +40,16 @@ before_deploy:
   - "cd ./dist/"
 
 deploy:
-  - provider: script
-    script:
-      - "cd ../ &&  npm run deploy"
+  - provider: pages
+#    script:
+#      - "cd ../ &&  npm run deploy"
     skip_cleanup: true
+    github_token: $GITHUB_TOKEN
     on:
       branch: ci
-  - provider: npm
+#  - provider: npm
     email: "katzi0@gmail.com"
-#    //$EMAIL_ADDRESS
 #    api_key: $NPM_TOKEN
-    skip_cleanup: true
-    on:
-      tags: true
+#    skip_cleanup: true
+#    on:
+#      tags: true
