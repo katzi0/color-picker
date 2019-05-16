@@ -1,0 +1,55 @@
+language: node_js
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+
+node_js:
+  - 'node'
+
+before_install:
+  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+
+install:
+  - npm install
+
+
+# Init GUI
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+  #- apt-get install graphicsmagick # for e2e screenshots
+
+
+script:
+- npm run lint
+- npm run build
+- npm run test
+
+cache:
+  directories:
+    - "./node_modules"
+
+before_deploy:
+#  - "npm run build"
+  - "cd ./dist/"
+
+deploy:
+  - provider: pages
+#    script:
+#      - "cd ../ &&  npm run deploy"
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    on:
+      branch: master
+#  - provider: npm
+    email: "katzi0@gmail.com"
+#    api_key: $NPM_TOKEN
+#    skip_cleanup: true
+#    on:
+#      tags: true
