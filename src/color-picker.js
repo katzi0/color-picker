@@ -15,10 +15,6 @@ class ColorPicker extends HTMLElement {
         this.mainColorClickHandler = this.mainColorClickHandler.bind(this)
     }
 
-    mainColorClickHandler (event)  {
-        this.renderColorPallete(event.target.innerHTML)
-    }
-
     get input() {
         return this._input
     }
@@ -29,6 +25,10 @@ class ColorPicker extends HTMLElement {
         elem.innerHTML = color
     }
 
+    mainColorClickHandler(event) {
+        this.renderColorPallete(event.target.innerHTML)
+    }
+
     connectedCallback() {
         this.renderMainColorList()
         this.$selectedColorPallete = this._shadow.querySelector('.selected-color-pallete')
@@ -36,7 +36,11 @@ class ColorPicker extends HTMLElement {
         colorFields.forEach(colorElm =>
             colorElm.addEventListener('click', this.mainColorClickHandler)
         )
-        this._shadow.querySelector('.wrapper.hidden').addEventListener('click',(event)=> event.stopPropagation())
+        this._shadow.querySelector('.wrapper').addEventListener('click', (event) => event.stopPropagation())
+        this._shadow.querySelector('#toggleColorPicker').addEventListener('click', () => {
+            this._shadow.querySelector('.classic-color-input').classList.remove('hidden')
+            this._shadow.querySelector('.pallate-wrapper').classList.add('hidden')
+        } )
     }
 
     renderMainColorList() {
@@ -74,8 +78,8 @@ class ColorPicker extends HTMLElement {
                 </style>${colorName}`
             $colorItem.style.background = MATERIAL_COLORS[colorName]
             $colorItem.onclick = () => {
-                const wrapper = this._shadow.querySelector('.wrapper.hidden')
-                wrapper.style.background = MATERIAL_COLORS[colorName]
+                const wrapper = this._shadow.querySelector('.wrapper')
+                wrapper.style.background = `linear-gradient(${$colorItem.style.background},white)`
                 this.input = MATERIAL_COLORS[colorName]
             }
             this.$selectedColorPallete.appendChild($colorListItem)
@@ -99,8 +103,13 @@ class ColorPicker extends HTMLElement {
     open() {
         this._shadow.querySelector('.overlay').classList.remove('overlay-hidden')
     }
-    close(){
+
+    close() {
         this._shadow.querySelector('.overlay').classList.add('overlay-hidden')
+    }
+
+    toggleColorPickerType = () => {
+
     }
 }
 

@@ -23,12 +23,14 @@ const templateStr = `
             transition: opacity 0.5s, visibility 0s 0.5s;
         }
     .hidden{
+    visibility: hidden;
         display: none;
     }
     .wrapper {
         display:flex;
         flex-direction: column;
         border:1px solid ghostwhite;
+        padding-top: 20px;
     }
     .main-color-list {
         display: flex;
@@ -119,17 +121,20 @@ const templateStr = `
     
 </style>
 <div class="overlay overlay-hidden">
-    <div class="wrapper hidden">
+    <div class="wrapper">
         <div class="pallate-wrapper">
             <ul class="selected-color-pallete"></ul>   
         </div>
          <div>
             <ul class="main-color-list"></ul>
+            <button id="toggleColorPicker">toggleColorPicker</button>
         </div>
         <div class="selected-color">
             <span class="context-span"></span>
         </div>
-        <input type="color" />
+        <div class="classic-color-input hidden">
+            <input type="color" />
+        </div>
     </div>
 </div>
 `
