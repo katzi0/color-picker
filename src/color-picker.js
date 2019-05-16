@@ -108,9 +108,9 @@ class ColorPicker extends HTMLElement {
         this._shadow.querySelector('.overlay').classList.add('overlay-hidden')
     }
 
-    toggleColorPickerType = () => {
-
-    }
+    // toggleColorPickerType = () => {
+    //
+    // }
 }
 
 customElements.define('color-picker', ColorPicker)
